@@ -1,6 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using ToDoList.Data;
+using ToDoList.Services.Tarefas;
 
 namespace ToDoList
 {
@@ -16,6 +17,8 @@ namespace ToDoList
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
+
+            builder.Services.AddScoped<ITarefasInterface, TarefasServices>();
 
             builder.Services.AddDbContext<AppDbContext>(options =>
             {
