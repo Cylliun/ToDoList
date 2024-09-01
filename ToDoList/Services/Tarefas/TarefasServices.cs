@@ -15,14 +15,14 @@ namespace ToDoList.Services.Tarefas
             _context = context;
         }
 
-        public async Task<ResponseModel<List<TarefasModel>>>  CriarTarefas(TarefaCriacaoDto tarefaCriacaoDto)
+        public async Task<ResponseModel<List<TarefasModel>>>  CriarTarefa(TarefaCriacaoDto tarefaCriacaoDto)
         {
             ResponseModel<List<TarefasModel>> resposta = new ResponseModel<List<TarefasModel>> ();
 
             try
             {
 
-                var tarefas = new TarefasModel()
+                var Tarefas = new TarefasModel()
                 {
 
                     Titulo = tarefaCriacaoDto.Titulo,
@@ -30,7 +30,7 @@ namespace ToDoList.Services.Tarefas
 
                 };
 
-                await _context.AddAsync(tarefas);
+                await _context.AddAsync(Tarefas);
                 await _context.SaveChangesAsync();
 
                 resposta.Dados = await _context.Tarefas.ToListAsync();
@@ -49,14 +49,75 @@ namespace ToDoList.Services.Tarefas
 
         }
 
-        public Task<ResponseModel<List<TarefasModel>>> EditarTarefas()
+        public async Task<ResponseModel<List<TarefasModel>>> EditarTarefa(TarefaEdicaoDto tarefaEdicaoDto)
         {
-            throw new NotImplementedException();
+            ResponseModel<List<TarefasModel>> resposta = new ResponseModel<List<TarefasModel>>();
+
+            try
+            {
+
+                var Tarefa = await _context.Tarefas
+                    .FirstOrDefaultAsync(tarefabanco => tarefabanco.Id == tarefaEdicaoDto.Id);
+
+                if (Tarefa == null)
+                {
+                    resposta.Mensagem = "Tarefa não encontrada!";
+                    return resposta;
+                }
+
+                Tarefa.Titulo = tarefaEdicaoDto.Titulo;
+                Tarefa.Descricao = tarefaEdicaoDto.Descricao;
+                Tarefa.Tempo = tarefaEdicaoDto.Tempo;
+
+                _context.Update(Tarefa);
+                await _context.SaveChangesAsync();
+
+                resposta.Dados = await _context.Tarefas.ToListAsync();
+                resposta.Mensagem = "Tarefa editada com sucesso!";
+                return resposta;
+
+
+            }catch (Exception ex)
+            {
+
+                resposta.Mensagem = ex.Message;
+                resposta.Status = false;
+                return resposta;
+            }
         }
 
-        public Task<ResponseModel<List<TarefasModel>>> ExcluirTarefas()
+        public async Task<ResponseModel<List<TarefasModel>>> ExcluirTarefa(int Id)
         {
-            throw new NotImplementedException();
+            ResponseModel<List<TarefasModel>> resposta = new ResponseModel<List<TarefasModel>>();
+
+            try
+            {
+
+                var Tarefa = await _context.Tarefas
+                    .FirstOrDefaultAsync(tarefaBanco => tarefaBanco.Id == Id);
+
+                if (Tarefa == null)
+                {
+                    resposta.Mensagem = "A tarefa não existe!";
+                    return resposta;
+                }
+
+                _context.Remove(Tarefa);
+                await _context.SaveChangesAsync();
+
+                resposta.Dados = await _context.Tarefas.ToListAsync();
+                resposta.Mensagem = "Tarefa Excluida com sucesso!";
+
+                return resposta;
+
+
+            } catch (Exception ex)
+            {
+                resposta.Mensagem = ex.Message;
+                resposta.Status = false;
+                return resposta;
+            }
+
         }
 
         public async Task<ResponseModel<List<TarefasModel>>> ListarTarefas()

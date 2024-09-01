@@ -23,12 +23,25 @@ namespace ToDoList.Controllers
             return Ok(Tarefas);
         }
 
-        [HttpPost("CriarTarefas")]
+        [HttpPost("CriarTarefa")]
         public async Task<ActionResult<ResponseModel<List<TarefasModel>>>> CriarTarefas(TarefaCriacaoDto tarefaCriacaoDto)
         {
-            var Tarefas = await _tarefasInterface.CriarTarefas(tarefaCriacaoDto);
+            var Tarefas = await _tarefasInterface.CriarTarefa(tarefaCriacaoDto);
             return Ok(Tarefas);
         }
 
+        [HttpPut("EditarTarefa")]
+        public async Task<ActionResult<ResponseModel<List<TarefasModel>>>> EditarTarefas(TarefaEdicaoDto tarefaEdicaoDto)
+        {
+            var Tarefas = await _tarefasInterface.EditarTarefa(tarefaEdicaoDto);
+            return Ok(Tarefas);
+        }
+
+        [HttpDelete("ExcluirTarefa")]
+        public async Task<ActionResult<ResponseModel<List<TarefasModel>>>> ExcluirTarefa(int Id)
+        {
+            var Tarefas = await _tarefasInterface.ExcluirTarefa(Id);
+            return Ok(Tarefas);
+        }
     }
 }
