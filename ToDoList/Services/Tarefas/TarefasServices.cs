@@ -4,8 +4,7 @@ using ToDoList.Data;
 using ToDoList.Dto;
 using ToDoList.Models;
 
-namespace ToDoList.Services.Tarefas
-{
+namespace ToDoList.Services.Tarefas {   
     public class TarefasServices : ITarefasInterface
     {
 
@@ -109,7 +108,6 @@ namespace ToDoList.Services.Tarefas
                 resposta.Mensagem = "Tarefa Excluida com sucesso!";
 
                 return resposta;
-
 
             } catch (Exception ex)
             {

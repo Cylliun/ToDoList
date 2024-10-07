@@ -7,7 +7,7 @@ namespace ToDoList.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class TarefasController : Controller
+    public class TarefasController : ControllerBase
     {
 
         private readonly ITarefasInterface _tarefasInterface;
