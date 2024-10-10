@@ -30,7 +30,7 @@ namespace ToDoList.Controllers
             return Ok(Tarefas);
         }
 
-        [HttpPut("EditarTarefa")]
+        [HttpPut("EditarTarefa/")]
         public async Task<ActionResult<ResponseModel<List<TarefasModel>>>> EditarTarefas(TarefaEdicaoDto tarefaEdicaoDto)
         {
             var Tarefas = await _tarefasInterface.EditarTarefa(tarefaEdicaoDto);
