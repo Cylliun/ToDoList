@@ -159,3 +159,16 @@ C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\obj\Debug\net9.0\refint\T
 C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\obj\Debug\net9.0\ToDoList.Tests.pdb
 C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\obj\Debug\net9.0\ToDoList.Tests.genruntimeconfig.cache
 C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\obj\Debug\net9.0\ref\ToDoList.Tests.dll
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\publish\web.config
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\publish\appsettings.Development.json
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\publish\appsettings.json
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\publish\ToDoList.deps.json
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\publish\ToDoList.runtimeconfig.json
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\publish\ToDoList.staticwebassets.endpoints.json
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\publish\View\todo-list-frontend\todo-list-frontend\package-lock.json
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\publish\View\todo-list-frontend\todo-list-frontend\package.json
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\publish\View\todo-list-frontend\todo-list-frontend\tsconfig.app.json
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\publish\View\todo-list-frontend\todo-list-frontend\tsconfig.json
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\publish\View\todo-list-frontend\todo-list-frontend\tsconfig.node.json
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\Castle.Core.dll
+C:\Users\Eiji\codeLearning\Web\ToDoList\ToDoList.Tests\bin\Debug\net9.0\Moq.dll
