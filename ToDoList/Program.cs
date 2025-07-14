@@ -10,8 +10,6 @@ namespace ToDoList
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.WebHost.UseUrls("http://0.0.0.0:80");
-
             // Add services to the container.
 
             builder.Services.AddControllers();
@@ -46,7 +44,10 @@ namespace ToDoList
                 app.UseSwaggerUI();
             }
 
-            app.UseHttpsRedirection();
+            if (!app.Environment.IsProduction())
+            {
+                app.UseHttpsRedirection();
+            }
 
             app.UseCors("AllowAll");
 

@@ -1,15 +1,6 @@
-services:
-  todolist-api:
-    build:
-      context: ./ToDoList
-      dockerfile: Dockerfile
-    ports:
-      - "5000:80"
-    depends_on:
-      - sqlserver
-    environment:
-      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=ToDoListDb;User=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;
+version: "3.9"
 
+services:
   sqlserver:
     image: mcr.microsoft.com/mssql/server:2019-latest
     environment:
@@ -17,3 +8,20 @@ services:
       ACCEPT_EULA: "Y"
     ports:
       - "1433:1433"
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "YourStrong!Passw0rd", "-Q", "SELECT 1"]
+      interval: 15s
+      timeout: 10s
+      retries: 10
+
+  todolist-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "5000:80"
+    depends_on:
+      sqlserver:
+        condition: service_healthy
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=sqlserver;Database=Tarefas;User=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;
