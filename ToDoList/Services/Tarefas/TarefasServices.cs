@@ -66,7 +66,6 @@ namespace ToDoList.Services.Tarefas {
 
                 Tarefa.Titulo = tarefaEdicaoDto.Titulo;
                 Tarefa.Descricao = tarefaEdicaoDto.Descricao;
-                Tarefa.Tempo = tarefaEdicaoDto.Tempo;
 
                 _context.Update(Tarefa);
                 await _context.SaveChangesAsync();

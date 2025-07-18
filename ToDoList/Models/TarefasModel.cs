@@ -7,7 +7,7 @@
         public string Titulo { get; set; }
         public string Descricao { get; set; }
         public bool Concluido { get; set; } = false;
-        public DateTime Tempo { get; set; }
+        public DateTime Tempo { get; set; } = DateTime.Now;
 
     }
 }
