@@ -9,5 +9,6 @@ namespace ToDoList.Services.Tarefas
         Task<ResponseModel<List<TarefasModel>>> CriarTarefa(TarefaCriacaoDto tarefaCriacaoDto);
         Task<ResponseModel<List<TarefasModel>>> EditarTarefa(TarefaEdicaoDto tarefaEdicaoDto);
         Task<ResponseModel<List<TarefasModel>>> ExcluirTarefa(int Id);
+        Task<ResponseModel<List<TarefasModel>>> TarefaConcluida(int Id);
     }
 }

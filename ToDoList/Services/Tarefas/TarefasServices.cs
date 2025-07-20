@@ -21,12 +21,20 @@ namespace ToDoList.Services.Tarefas {
             try
             {
 
+                if (string.IsNullOrWhiteSpace(tarefaCriacaoDto.Titulo) || string.IsNullOrWhiteSpace(tarefaCriacaoDto.Descricao))
+                {
+                    resposta.Status = false;
+                    resposta.Mensagem = "Título e data são obrigatórios";
+                    resposta.Dados = null;
+                    return resposta;
+                }
+
                 var Tarefas = new TarefasModel()
                 {
 
                     Titulo = tarefaCriacaoDto.Titulo,
-                    Descricao = tarefaCriacaoDto.Descricao
-
+                    Descricao = tarefaCriacaoDto.Descricao,
+                    Tempo = tarefaCriacaoDto.Tempo
                 };
 
                 await _context.AddAsync(Tarefas);
@@ -34,6 +42,9 @@ namespace ToDoList.Services.Tarefas {
 
                 resposta.Dados = await _context.Tarefas.ToListAsync();
                 resposta.Mensagem = "Tarefa criada com sucesso!";
+                resposta.Status = true;
+
+
                 return resposta;
 
 
@@ -61,6 +72,7 @@ namespace ToDoList.Services.Tarefas {
                 if (Tarefa == null)
                 {
                     resposta.Mensagem = "Tarefa não encontrada!";
+                    resposta.Status = false;
                     return resposta;
                 }
 
@@ -72,6 +84,7 @@ namespace ToDoList.Services.Tarefas {
 
                 resposta.Dados = await _context.Tarefas.ToListAsync();
                 resposta.Mensagem = "Tarefa editada com sucesso!";
+                resposta.Status = true;
                 return resposta;
 
 
@@ -140,5 +153,36 @@ namespace ToDoList.Services.Tarefas {
 
         }
 
+        public async Task<ResponseModel<List<TarefasModel>>> TarefaConcluida(int Id)
+        {
+            ResponseModel<List<TarefasModel>> response = new ResponseModel<List<TarefasModel>>();
+
+            try
+            {
+
+                var tarefa = await _context.Tarefas.FindAsync(Id);
+
+                if ( tarefa == null )
+                {
+                    response.Mensagem = "A atividade não foi encontrada";
+                    response.Status = true;
+                    return response;
+                }
+
+                tarefa.Concluido = true;
+                await _context.SaveChangesAsync();
+
+                response.Dados = await _context.Tarefas.ToListAsync();
+                response.Mensagem = "Atividade concluída";
+                return response;
+
+            } catch (Exception ex)
+            {
+                response.Mensagem = ex.Message;
+                response.Status = false;
+                return response;
+            }
+
+        }
     }
 }
