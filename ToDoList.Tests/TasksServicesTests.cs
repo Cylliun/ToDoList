@@ -21,11 +21,11 @@ public class TasksServicesTests
 
 
     [Fact]
-    public async Task ListarAtividadeCriada()
+    public async Task ListarAtividadeCriadaComSucesso()
     {
         //Arrange
 
-        _tarefasApplicationMock.Setup(service => service.ListarTarefas())
+        _tarefasApplicationMock.Setup(l => l.ListarTarefas())
             .ReturnsAsync(new ResponseModel<List<TarefasModel>>
             {
                 Dados = new List<TarefasModel>
@@ -33,13 +33,14 @@ public class TasksServicesTests
                     new TarefasModel
                     {
                         Titulo = "TCC",
-                        Descricao = "Aplicação de mecanismos de segurança do sistema TimeGame",
+                        Descricao = "Aplicação de mecanismos de segurança do sistema TimeGamer",
                         Tempo = DateTime.Today
                     }
                 },
                 Mensagem = "Listagem realizada com sucesso",
                 Status = true
             });
+
         //Act
 
         var result = await _tarefasController.ListarTarefas();
@@ -52,4 +53,37 @@ public class TasksServicesTests
         Assert.Single(responseValue.Dados);
 
     }
+
+    [Fact]
+
+    public async Task CriarAtividadeInvalidaComErro()
+    {
+        //Arrange
+
+        var tarefaInvalida = new TarefaCriacaoDto
+        {
+            Titulo = "",
+            Descricao = "",
+        };
+
+        _tarefasApplicationMock.Setup(l => l.CriarTarefa(It.IsAny<TarefaCriacaoDto>()))
+            .ReturnsAsync(new ResponseModel<List<TarefasModel>>
+            {
+                Dados = null,
+                Mensagem = "Erro ao criar Atividade",
+                Status = false
+            });
+
+        //Act
+
+        var result = await _tarefasController.CriarTarefas(tarefaInvalida);
+
+        //Assert
+
+        var badRequestResult = Assert.IsType<BadRequestObjectResult>(result.Result);
+        var response = Assert.IsType<ResponseModel<List<TarefasModel>>>(badRequestResult.Value);
+        Assert.False(response.Status);
+
+    }
+
 }
