@@ -1,4 +1,4 @@
-# Gerenciador de Tarefas (To-Do-List)
+  # Gerenciador de Tarefas (To-Do-List)
 
 É um projeto com proposito de orgamizar as atividades do usuário no seu dia a dia, com o objetivo de ter uma gestão de tempo eficiente, além de um sistema simples e intuitivo.
 
@@ -43,6 +43,7 @@
 git clone [https://github.com/Cylliun/ToDoList.git](https://github.com/Cylliun/ToDoList.git)
 
 (na pasta View/ clone o projeto do front-end [https://github.com/JacksonSants/todo-list-frontend.git](https://github.com/JacksonSants/todo-list-frontend.git))
+
 2. Busque o diretório ToDoList
 
 cd ToDoList
