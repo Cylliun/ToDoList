@@ -28,7 +28,8 @@
 * **[Framework/Biblioteca]** (Dotnet, .NET,  Aspnet, React)
 * **[Banco de Dados]** (SQL Server)
 * **[Testes]** (XUnit e Moq)
-* **[Outras Ferramentas]** (ex: Git/Github e Docker)
+* **[CI/CD]** (Github Actions)
+* **[Outras Ferramentas]** (ex: Git/Github, Docker)
 
 ## Como rodar o Projeto
 
