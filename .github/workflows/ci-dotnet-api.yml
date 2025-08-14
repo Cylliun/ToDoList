@@ -8,11 +8,11 @@ on:
 
 jobs:
   ci:
-    runs-on: ubuntu-latest  # mais rápido e barato que Windows
+    runs-on: ubuntu-latest
 
     env:
       SOLUTION_FILE: ToDoList.sln
-      DOTNET_CLI_TELEMETRY_OPTOUT: true
+      DOTNET_CLI_TELEMETRY_OPTOUT: "true"
 
     steps:
     - name: Checkout
@@ -21,9 +21,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        # se quiser testar várias versões, pode usar matriz;
-        # aqui focamos no .NET 8
-        dotnet-version: 8.0.x
+        dotnet-version: 9.0.x
 
     - name: Cache NuGet
       uses: actions/cache@v4
@@ -39,7 +37,7 @@ jobs:
     - name: Build (Release)
       run: dotnet build $SOLUTION_FILE --configuration Release --no-restore
 
-    - name: Test (toda a solution)
+    - name: Test (entire solution)
       run: dotnet test $SOLUTION_FILE --configuration Release --no-build --collect "XPlat Code Coverage" --logger "trx;LogFileName=test_results.trx"
 
     - name: Upload test results (sempre)
